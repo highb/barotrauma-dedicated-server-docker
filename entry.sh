@@ -4,8 +4,8 @@
 "${STEAMCMDDIR}/steamcmd.sh" "${STEAMCMDDIR}/steamcmd.sh" \
     @ShutdownOnFailedCommand \
     @NoPromptForPassword \
-    +login anonymous \
     +force_install_dir ${STEAMAPPDIR} \
+    +login anonymous \
     +app_update ${STEAMAPPID} \
     +'quit'
 
