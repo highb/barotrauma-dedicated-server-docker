@@ -23,8 +23,8 @@ RUN set -x \
 	&& "${STEAMCMDDIR}/steamcmd.sh" \
 			@ShutdownOnFailedCommand \
 			@NoPromptForPassword \
-			+login anonymous \
 			+force_install_dir ${STEAMAPPDIR} \
+			+login anonymous \
 			+app_update ${STEAMAPPID} validate \
 			+'quit' \
 	&& apt-get remove --purge -y \
