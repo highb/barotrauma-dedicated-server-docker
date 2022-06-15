@@ -42,9 +42,12 @@ RUN set -x \
 
 # Create Multiplayer save directory for volume mount
 ENV BAR_MULTIPLAYER_SAVE_DIR "/home/steam/.local/share/Daedalic Entertainment GmbH/Barotrauma/Multiplayer"
+ENV BAR_MODS_DIR "/home/steam/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed"
 RUN set -x \
   && mkdir -p "$BAR_MULTIPLAYER_SAVE_DIR" \
   && chown -R steam:steam "$BAR_MULTIPLAYER_SAVE_DIR/../.." \
+  && mkdir -p "$BAR_MODS_DIR" \
+  && chown -R steam:steam "$BAR_MODS_DIR" \
   && mkdir -p "${BAR_CONFIG_IMPORT_DIR}" \
   && chown -R steam:steam "${BAR_CONFIG_IMPORT_DIR}"
 
@@ -65,6 +68,7 @@ WORKDIR $STEAMAPPDIR
 
 VOLUME $STEAMAPPDIR
 VOLUME $BAR_MULTIPLAYER_SAVE_DIR
+VOLUME $BAR_MODS_DIR
 VOLUME $BAR_CONFIG_IMPORT_DIR
 
 ENTRYPOINT ${STEAMAPPDIR}/entry.sh
