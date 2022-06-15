@@ -7,6 +7,7 @@ LABEL maintainer="leon.pelech@gmail.com"
 
 ENV STEAMAPPID 1026340
 ENV STEAMAPPDIR /home/steam/barotrauma-dedicated
+ENV BAR_CONFIG_IMPORT_DIR "/home/steam/config"
 
 # Install DOT.NET Rutime dependencies
 # Install game files
@@ -43,7 +44,9 @@ RUN set -x \
 ENV BAR_MULTIPLAYER_SAVE_DIR "/home/steam/.local/share/Daedalic Entertainment GmbH/Barotrauma/Multiplayer"
 RUN set -x \
   && mkdir -p "$BAR_MULTIPLAYER_SAVE_DIR" \
-  && chown -R steam:steam "$BAR_MULTIPLAYER_SAVE_DIR/../.."
+  && chown -R steam:steam "$BAR_MULTIPLAYER_SAVE_DIR/../.." \
+  && mkdir -p "${BAR_CONFIG_IMPORT_DIR}" \
+  && chown -R steam:steam "${BAR_CONFIG_IMPORT_DIR}"
 
 # Copy custom files for server
 COPY --chown=steam:steam entry.sh ${STEAMAPPDIR}/entry.sh
@@ -62,6 +65,7 @@ WORKDIR $STEAMAPPDIR
 
 VOLUME $STEAMAPPDIR
 VOLUME $BAR_MULTIPLAYER_SAVE_DIR
+VOLUME $BAR_CONFIGS_DIR
 
 ENTRYPOINT ${STEAMAPPDIR}/entry.sh
 
