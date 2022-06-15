@@ -47,7 +47,7 @@ RUN set -x \
   && mkdir -p "$BAR_MULTIPLAYER_SAVE_DIR" \
   && chown -R steam:steam "$BAR_MULTIPLAYER_SAVE_DIR/../.." \
   && mkdir -p "$BAR_MODS_DIR" \
-  && chown -R steam:steam "$BAR_MODS_DIR" \
+  && chown -R steam:steam "/home/steam/" \
   && mkdir -p "${BAR_CONFIG_IMPORT_DIR}" \
   && chown -R steam:steam "${BAR_CONFIG_IMPORT_DIR}"
 
