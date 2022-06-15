@@ -10,6 +10,7 @@
     +'quit'
 
 cp ${BAR_CONFIG_IMPORT_DIR}/* ${STEAMAPPDIR}/ 
+chown -R steam:steam "${BAR_CONFIG_IMPORT_DIR}"
 
 # Update settings.xml using ENV varaibles
 SETTINGS_XML=${STEAMAPPDIR}/serversettings.xml
