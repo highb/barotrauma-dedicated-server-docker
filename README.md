@@ -100,7 +100,7 @@ variable contents over multiple lines in a script.
 For more information on this configuration see
 the [Barotrauma Wiki pages](https://barotraumagame.com/wiki/Clientpermissions.xml).
 
-## Subamarines
+## Submarines
 
 Mount a volume when running the container to include additional custom submarines. For example
 
