@@ -9,6 +9,8 @@
     +app_update ${STEAMAPPID} \
     +'quit'
 
+cp ${BAR_CONFIG_IMPORT_DIR}/* ${STEAMAPPDIR}/ 
+
 # Update settings.xml using ENV varaibles
 SETTINGS_XML=${STEAMAPPDIR}/serversettings.xml
 sed -i "s/password=.*/password=\"${BAR_PASSWORD}\"/" "${SETTINGS_XML}"
