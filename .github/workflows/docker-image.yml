@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v*.*'
+    branches:
+      - master
   
 jobs:
   docker:
@@ -26,6 +28,7 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=semver,pattern={{version}}
+            type=sha
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
