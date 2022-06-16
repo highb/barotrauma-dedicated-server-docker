@@ -8,6 +8,7 @@ LABEL maintainer="leon.pelech@gmail.com"
 ENV STEAMAPPID 1026340
 ENV STEAMAPPDIR /home/steam/barotrauma-dedicated
 ENV BAR_CONFIG_IMPORT_DIR "/home/steam/config"
+ENV BAR_LOCAL_SHRE_DIR "/home/steam/.local/share"
 
 # Install DOT.NET Rutime dependencies
 # Install game files
@@ -40,14 +41,10 @@ RUN set -x \
 	&& chown -R steam:steam /home/steam/.steam \
 	&& ln -s ${STEAMAPPDIR}/steamclient.so /home/steam/.steam/sdk64/steamclient.so
 
-# Create Multiplayer save directory for volume mount
-ENV BAR_MULTIPLAYER_SAVE_DIR "/home/steam/.local/share/Daedalic Entertainment GmbH/Barotrauma/Multiplayer"
-ENV BAR_MODS_DIR "/home/steam/.local/share/Daedalic Entertainment GmbH/Barotrauma/WorkshopMods/Installed"
+# Create .local/share directory for volume mount
 RUN set -x \
-  && mkdir -p "$BAR_MULTIPLAYER_SAVE_DIR" \
-  && chown -R steam:steam "$BAR_MULTIPLAYER_SAVE_DIR/../.." \
-  && mkdir -p "$BAR_MODS_DIR" \
-  && chown -R steam:steam "/home/steam/" \
+  && mkdir -p "$BAR_LOCAL_SHARE_DIR" \
+  && chown -R steam:steam "$BAR_LOCAL_SHARE_DIR/../.." \
   && mkdir -p "${BAR_CONFIG_IMPORT_DIR}" \
   && chown -R steam:steam "${BAR_CONFIG_IMPORT_DIR}"
 
@@ -67,9 +64,7 @@ USER steam
 WORKDIR $STEAMAPPDIR
 
 VOLUME $STEAMAPPDIR
-VOLUME $BAR_MULTIPLAYER_SAVE_DIR
-VOLUME $BAR_MODS_DIR
-VOLUME $BAR_CONFIG_IMPORT_DIR
+VOLUME $BAR_LOCAL_SHARE_DIR
 
 ENTRYPOINT ${STEAMAPPDIR}/entry.sh
 
