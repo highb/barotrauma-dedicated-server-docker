@@ -8,7 +8,7 @@ LABEL maintainer="leon.pelech@gmail.com"
 ENV STEAMAPPID 1026340
 ENV STEAMAPPDIR /home/steam/barotrauma-dedicated
 ENV BAR_CONFIG_IMPORT_DIR "/home/steam/config"
-ENV BAR_LOCAL_SHRE_DIR "/home/steam/.local/share"
+ENV BAR_LOCAL_SHARE_DIR "/home/steam/.local/share"
 
 # Install DOT.NET Rutime dependencies
 # Install game files
